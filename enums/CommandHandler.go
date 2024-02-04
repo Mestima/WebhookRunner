@@ -3,7 +3,7 @@ package enums
 import "WebhookRunner/types"
 
 const (
-	LinuxMinimal types.CommandHandler = "/bin/sh"
-	Linux        types.CommandHandler = "/bin/bash"
-	Windows      types.CommandHandler = "powershell"
+	LinuxMinimal types.CommandHandlerType = "/bin/sh"
+	Linux        types.CommandHandlerType = "/bin/bash"
+	Windows      types.CommandHandlerType = "powershell"
 )

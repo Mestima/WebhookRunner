@@ -9,11 +9,11 @@ import (
 type CommandHandler struct {
 	command     *exec.Cmd
 	commandRaw  string
-	handlerType types.CommandHandler
+	handlerType types.CommandHandlerType
 	lastOutput  string
 }
 
-func (handler *CommandHandler) SetType(handlerType types.CommandHandler) {
+func (handler *CommandHandler) SetType(handlerType types.CommandHandlerType) {
 	handler.handlerType = handlerType
 }
 
@@ -51,6 +51,6 @@ func (handler *CommandHandler) GetRawCommand() string {
 	return handler.commandRaw
 }
 
-func (handler *CommandHandler) GetHandlerType() types.CommandHandler {
+func (handler *CommandHandler) GetHandlerType() types.CommandHandlerType {
 	return handler.handlerType
 }
