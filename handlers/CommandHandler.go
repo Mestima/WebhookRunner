@@ -19,7 +19,9 @@ func (handler *CommandHandler) SetType(handlerType types.CommandHandler) {
 
 func (handler *CommandHandler) SetCommand(command string) {
 	handler.commandRaw = command
-	handler.command = exec.Command(string(handler.handlerType), handler.commandRaw)
+
+	//args := strings.Split(handler.commandRaw, " ")
+	handler.command = exec.Command(string(handler.handlerType), "-c", handler.commandRaw)
 }
 
 func (handler *CommandHandler) Execute() (string, error) {
