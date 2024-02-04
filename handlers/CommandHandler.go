@@ -17,9 +17,13 @@ func (handler *CommandHandler) SetType(handlerType types.CommandHandler) {
 	handler.handlerType = handlerType
 }
 
-func (handler *CommandHandler) SetCommand(command string) {
+func (handler *CommandHandler) SetCommand(command string, isFile bool) {
 	handler.commandRaw = command
-	handler.command = exec.Command(string(handler.handlerType), "-c", handler.commandRaw)
+	if isFile {
+		handler.command = exec.Command(string(handler.handlerType), handler.commandRaw)
+	} else {
+		handler.command = exec.Command(string(handler.handlerType), "-c", handler.commandRaw)
+	}
 }
 
 func (handler *CommandHandler) Execute() (string, error) {

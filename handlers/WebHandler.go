@@ -78,8 +78,15 @@ func (handler *WebHandler) executeCode(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		r.ParseForm()
 		cmd := r.Form.Get("command")
-		if cmd != "" {
-			handler.commandHandler.SetCommand(cmd)
+		filename := r.Form.Get("filename")
+
+		if cmd != "" || filename != "" {
+			if cmd != "" {
+				handler.commandHandler.SetCommand(cmd, false)
+			} else {
+				handler.commandHandler.SetCommand(filename, true)
+			}
+
 			out, err := handler.commandHandler.Execute()
 			if err != nil {
 				fmt.Fprint(w, fmt.Sprint(err))
